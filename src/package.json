@@ -1,0 +1,23 @@
+{
+  "name": "dog-tag-engine",
+  "version": "0.0.1",
+  "description": "A browser based real-time strategy game engine, written in HTML/Javascript using THREE.js/WebGL.",
+  "main": "DTE.js",
+  "dependencies": {
+    "three": "^0.117.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidFrendin/dog-tag-engine.git"
+  },
+  "author": "David Frendin <david.frendin@gmail.com> (https://github.com/DavidFrendin/dog-tag-engine)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DavidFrendin/dog-tag-engine/issues"
+  },
+  "homepage": "https://github.com/DavidFrendin/dog-tag-engine#readme"
+}

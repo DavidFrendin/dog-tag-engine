@@ -19,6 +19,11 @@
 			
 			engine.rendering.init();
 
+			var stage = new DTE.Stage();
+			stage.SpawnCamera();
+			stage.SpawnLight();
+			stage.SpawnEntity(new DTE.TestEntity());
+
 		</script>
 		
 	</body>
