@@ -1,3 +1,9 @@
+/*
+    Dog Tag Engine
+    Author: David Frendin <david.frendin@gmail.com> (https://github.com/DavidFrendin/dog-tag-engine/)
+    License: MIT
+*/
+
 import {Camera} from '../entities/Camera.js';
 
 class Stage
