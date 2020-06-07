@@ -7,6 +7,7 @@
 import * as THREE from '../node_modules/three/build/three.module.js';
 import {Engine} from '../core/Engine.js';
 import {Camera} from '../entities/Camera.js';
+import {RenderingManager} from './core/RenderingManager.js';
 
 class RenderingWorker
 {
@@ -20,16 +21,16 @@ class RenderingWorker
 
     init(data)
     {
-        this.engine = new Engine();
-        this.engine.settings = data.settings;
-        this.engine.rendering.createRenderer({drawingSurface: data.drawingSurface, width: data.width, height: data.height, pixelRatio: data.pixelRatio});
-        this.engine.rendering.createScene();
-        this.engine.rendering.initRendering();
+        this.renderingManager = new RenderingManager(this);
+        this.settings = data.settings;
+        this.renderingManager.createRenderer({drawingSurface: data.drawingSurface, width: data.width, height: data.height, pixelRatio: data.pixelRatio});
+        this.renderingManager.createScene();
+        this.renderingManager.initRendering();
     }
 
     resize(data)
     {
-        this.engine.rendering.rendererResize(data.width, data.height);
+        this.renderingManager.resize(data.width, data.height);
     }
 
     spawn(entity)
@@ -37,7 +38,7 @@ class RenderingWorker
         if (entity.className = 'Camera')
         {
             var c = new Camera().spawn(entity);
-            this.engine.rendering.setCamera(c.entity);
+            this.renderingManager.setCamera(c.entity);
         }
     }
 }
