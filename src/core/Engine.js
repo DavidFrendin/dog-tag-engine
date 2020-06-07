@@ -5,11 +5,13 @@
 */
 import {Settings} from './Settings.js';
 import {Rendering} from './Rendering.js';
+import {ScreenManager} from './ScreenManager.js';
 
 class Engine
 {
     settings = new Settings();
     rendering = new Rendering(this);
+    screenManager = new ScreenManager(this);
 
 }
 

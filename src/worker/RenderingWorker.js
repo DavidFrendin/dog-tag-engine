@@ -27,6 +27,11 @@ class RenderingWorker
         this.engine.rendering.initRendering();
     }
 
+    resize(data)
+    {
+        this.engine.rendering.rendererResize(data.width, data.height);
+    }
+
     spawn(entity)
     {
         if (entity.className = 'Camera')

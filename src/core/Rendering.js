@@ -25,8 +25,10 @@ class Rendering
         var canvas = document.querySelector('canvas');
         if (!canvas)
         {
+            var canvasContainer = document.createElement('div');
             canvas = document.createElement('canvas');
-            document.body.appendChild(canvas);
+            canvasContainer.appendChild(canvas);
+            document.body.appendChild(canvasContainer);
         }
 
         var offscreen = canvas.transferControlToOffscreen();
@@ -43,6 +45,26 @@ class Rendering
             path: '../../',
             settings: this._engine.settings
         }, [offscreen]);
+    }
+
+    resize(params)
+    {
+        this.worker.postMessage(
+        {
+            type: 'resize',
+            width: params.width,
+            height: params.height
+        });
+    }
+
+    rendererResize(width, height)
+    {
+        if (this.renderer)
+        {
+            width = width;
+            height = height;
+            this.renderer.setSize( width, height, false );
+        }
     }
 
     spawn(entity)
@@ -63,6 +85,16 @@ class Rendering
     {
         this.cameras.push(camera);
         this.camera = camera;
+
+        var geometry = new THREE.BoxGeometry();
+        var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+        var cube = new THREE.Mesh( geometry, material );
+        this.scene.add( cube );
+
+        cube.rotation.x += 0.51;
+        cube.rotation.y += 0.51;
+        
+        camera.position.z = 5;
     }
 
     render(time)
@@ -99,7 +131,7 @@ class Rendering
         this.renderer = new THREE.WebGLRenderer({canvas: canvas});
         var width = params.width;
         var height = params.height;
-        var pixelRatio = (params.pixelRatio) ? params.pixelRatio : 1;
+        var pixelRatio = params.pixelRatio;
         var settings = this._engine.settings;
 
         this.renderer.powerPreference = 'high-performance';
