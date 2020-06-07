@@ -19,9 +19,9 @@
 			
 			engine.rendering.init();
 
-			var stage = new DTE.Stage();
+			var stage = new DTE.Stage(engine);
 			stage.SpawnCamera();
-			stage.SpawnLight();
+			stage.SpawnLight({type: 'point', });
 			stage.SpawnEntity(new DTE.TestEntity());
 
 		</script>

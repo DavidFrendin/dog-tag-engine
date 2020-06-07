@@ -10,6 +10,7 @@ class Rendering
 {
     worker = false;
     initialized = false;
+    cameras = [];
 
     constructor(engine)
     {
@@ -42,6 +43,54 @@ class Rendering
             path: '../../',
             settings: this._engine.settings
         }, [offscreen]);
+    }
+
+    spawn(entity)
+    {
+        entity.className = entity.__proto__.constructor.name;
+        this.worker.postMessage(
+        {
+            type: 'spawn', entity: entity
+        });
+    }
+
+    initRendering()
+    {
+        requestAnimationFrame( this.render.bind(this) );
+    }
+
+    setCamera(camera)
+    {
+        this.cameras.push(camera);
+        this.camera = camera;
+    }
+
+    render(time)
+    {
+        time *= 0.001;
+
+        this.renderer.setClearColor( new THREE.Color( 0.5, 0.5, 0.7 ) );
+    
+        if (!this.camera)
+        {
+            if (this.cameras.length > 0)
+            {
+                this.camera = this.cameras[0];
+            }
+        }
+
+        if (this.camera)
+        {
+            this.renderer.render( this.scene, this.camera );
+        }
+    
+        requestAnimationFrame( this.render.bind(this) );
+    
+    }
+
+    createScene()
+    {
+        this.scene = new THREE.Scene();
     }
 
     createRenderer(params)

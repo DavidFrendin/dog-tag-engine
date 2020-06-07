@@ -5,9 +5,16 @@
 */
 
 import {Entity} from '../core/Entity.js';
+import * as THREE from '../node_modules/three/build/three.module.js';
 
 class Camera extends Entity
 {
+
+    spawn(entity)
+    {
+        this.entity = new THREE.PerspectiveCamera( 75, 640 / 480, 0.1, 1000 );
+        return this;
+    }
 
 }
 

@@ -5,6 +5,7 @@
 */
 
 import {Camera} from '../entities/Camera.js';
+import {PointLight} from '../entities/PointLight.js';
 
 class Stage
 {
@@ -12,9 +13,15 @@ class Stage
     lightSources = [];
     entities = [];
 
+    constructor(engine)
+    {
+        this._engine = engine;
+    }
+
     SpawnEntity(entity)
     {
         this.entities.push(entity);
+        this._engine.rendering.spawn(entity);
         return entity;
     }
 
@@ -22,8 +29,7 @@ class Stage
     {
         var camera = new Camera();
         this.cameras.push(camera);
-        this.entities.push(camera);
-        return camera;
+        return this.SpawnEntity(camera);
     }
 
     SpawnLight(type, params)
@@ -40,8 +46,7 @@ class Stage
                 light.intensity = params.intensity;
             }
             this.lightSources.push(light);
-            this.entities.push(light);
-            return light;
+            return this.SpawnEntity(light);
         }
     }
 
