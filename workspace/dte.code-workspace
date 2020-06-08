@@ -5,6 +5,18 @@
 		}
 	],
 	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "examples"
+		"liveServer.settings.multiRootWorkspaceName": "examples",
+		"liveSassCompile.settings.formats":[
+			{
+				"format": "expanded",
+				"extensionName": ".css",
+				"savePath": "/assets/css"
+			},
+			{
+				"format": "compressed",
+				"extensionName": ".min.css",
+				"savePath": "/assets/css"
+			}
+		]
 	}
 }

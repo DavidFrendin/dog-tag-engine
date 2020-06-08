@@ -46,9 +46,10 @@ class RenderingWorker
         }
         else if (entity.className == 'TestEntity')
         {
-            var ent = new TestEntity().spawn(entity);
-            this.renderingManager.entities.push(ent);
-            this.renderingManager.scene.add(ent.entity);
+            new TestEntity().spawn(entity).then((ent) => {
+                this.renderingManager.entities.push(ent);
+                this.renderingManager.scene.add(ent.entity);
+            });
         }
         else if (entity.className == 'PointLight')
         {

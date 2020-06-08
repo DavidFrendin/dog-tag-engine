@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Dog Tag Engine - Initialize</title>
+		<title>Dog Tag Engine - GUI</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="/assets/css/main.css">
 		<link type="text/css" rel="stylesheet" href="../css/examples.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
@@ -20,6 +21,9 @@
 			engine.rendering.init();
 			engine.screenManager.updateCanvas();
 			engine.screenManager.monitorResizeEvents();
+
+			var menu = [{name: 'File', children: [{name: 'New', click: function(){ alert('new');}}, {name: 'Open'}, {name: 'Save'}]}, {name: 'Renderer'}]
+			engine.gui.createMenubar(menu);
 
 			var stage = new DTE.Stage(engine);
 			stage.SpawnCamera({position: [0, 100, 500]});
