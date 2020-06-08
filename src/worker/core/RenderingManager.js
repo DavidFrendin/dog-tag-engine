@@ -11,6 +11,7 @@ class RenderingManager
 
     cameras = [];
     screen = {width: 0, height: 0};
+    entities = [];
 
     constructor(worker)
     {
@@ -130,6 +131,15 @@ class RenderingManager
             }
         }
 
+        for (var i = 0; i < this.entities.length; i++)
+        {
+            if (this.entities[i].update)
+            {
+                this.entities[i].update();
+            }
+        }
+
+
         if (this.camera)
         {
             this.renderer.render( this.scene, this.camera );
@@ -143,17 +153,6 @@ class RenderingManager
     {
         this.cameras.push(camera);
         this.camera = camera;
-
-        var geometry = new THREE.BoxGeometry();
-        var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-        var cube = new THREE.Mesh( geometry, material );
-        this.scene.add( cube );
-
-        cube.rotation.x += 0.51;
-        cube.rotation.y += 0.51;
-        
-        camera.position.z = 5;
-
         this.resize();
     }
 

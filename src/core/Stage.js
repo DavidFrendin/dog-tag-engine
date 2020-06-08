@@ -25,9 +25,17 @@ class Stage
         return entity;
     }
 
-    SpawnCamera()
+    SpawnCamera(params)
     {
         var camera = new Camera();
+
+        if (params.position)
+        {
+            camera.position.x = params.position[0];
+            camera.position.y = params.position[1];
+            camera.position.z = params.position[2];
+        }
+
         this.cameras.push(camera);
         return this.SpawnEntity(camera);
     }

@@ -9,10 +9,13 @@ import * as THREE from '../node_modules/three/build/three.module.js';
 
 class Camera extends Entity
 {
-
     spawn(entity)
     {
         this.entity = new THREE.PerspectiveCamera( 75, 640 / 480, 0.1, 1000 );
+        if (entity.position)
+        {
+            this.entity.position.set(entity.position.x, entity.position.y, entity.position.z);
+        }
         return this;
     }
 

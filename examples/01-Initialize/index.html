@@ -30,8 +30,8 @@
 			engine.screenManager.monitorResizeEvents();
 
 			var stage = new DTE.Stage(engine);
-			stage.SpawnCamera();
-			stage.SpawnLight({type: 'point', });
+			stage.SpawnCamera({position: [0, 0, 5]});
+			stage.SpawnLight('point', {color: '#ffffff', intensity: 500});
 			stage.SpawnEntity(new DTE.TestEntity());
 
 

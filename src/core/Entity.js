@@ -4,9 +4,11 @@
     License: MIT
 */
 
+import * as THREE from '../node_modules/three/build/three.module.js';
+
 class Entity
 {
-
+    position = new THREE.Vector3(0,0,0);
 }
 
 export {Entity};

@@ -59,6 +59,7 @@ class Rendering
     spawn(entity)
     {
         entity.className = entity.__proto__.constructor.name;
+        console.log('spawning ' + entity.className);
         this.worker.postMessage(
         {
             type: 'spawn', entity: entity

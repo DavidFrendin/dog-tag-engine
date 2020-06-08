@@ -7,6 +7,8 @@
 import * as THREE from '../node_modules/three/build/three.module.js';
 import {Engine} from '../core/Engine.js';
 import {Camera} from '../entities/Camera.js';
+import {TestEntity} from '../entities/TestEntity.js';
+import {PointLight} from '../entities/PointLight.js';
 import {RenderingManager} from './core/RenderingManager.js';
 
 class RenderingWorker
@@ -33,12 +35,30 @@ class RenderingWorker
         this.renderingManager.resize(data.width, data.height);
     }
 
-    spawn(entity)
+    spawn(data)
     {
-        if (entity.className = 'Camera')
+        var entity = data.entity;
+        if (entity.className == 'Camera')
         {
-            var c = new Camera().spawn(entity);
-            this.renderingManager.setCamera(c.entity);
+            var ent = new Camera().spawn(entity);
+            this.renderingManager.entities.push(ent);
+            this.renderingManager.setCamera(ent.entity);
+        }
+        else if (entity.className == 'TestEntity')
+        {
+            var ent = new TestEntity().spawn(entity);
+            this.renderingManager.entities.push(ent);
+            this.renderingManager.scene.add(ent.entity);
+        }
+        else if (entity.className == 'PointLight')
+        {
+            var ent = new PointLight().spawn(entity);
+            this.renderingManager.entities.push(ent);
+            this.renderingManager.scene.add(ent.entity);
+        }
+        else
+        {
+            throw('unknown entity ' + entity.className);
         }
     }
 }
