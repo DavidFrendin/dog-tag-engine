@@ -24,6 +24,10 @@
 
 			var menu = [{name: 'File', children: [{name: 'New', click: function(){ alert('new');}}, {name: 'Open'}, {name: 'Save'}]}, {name: 'Renderer'}]
 			engine.gui.createMenubar(menu);
+			var portlet = engine.gui.createPortlet('left', 'icons');
+			portlet.addContainer({name: 'Terrain', icon: 'assets/icons/stationery_32.png'});
+			portlet.addContainer({name: 'Props', icon: 'assets/icons/tree_32.png'});
+
 
 			var stage = new DTE.Stage(engine);
 			stage.SpawnCamera({position: [0, 100, 500]});

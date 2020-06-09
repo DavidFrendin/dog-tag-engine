@@ -1,0 +1,71 @@
+$portlet-background: #24343C;
+$blade-background: #1B262C;
+$blade-foreground: rgba(255,255,255,.78);
+
+
+.dte-portlet
+{
+
+    &.dte-portlet-icon-navigation
+    {
+        display: flex;
+
+        ul
+        {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li
+            {
+                margin: 0;
+                padding: 20px;
+                display: block;
+                opacity: 0.6;
+                transition: background .1s ease-in-out, border .2s ease-in-out, opacity .2s ease-in-out;
+                border-left: 4px solid transparent;
+                cursor: pointer;
+                user-select: none;
+
+                &:hover
+                {
+                    opacity: 1;
+                }
+
+                &.selected
+                {
+                    border-left: 4px solid #ffffff;
+                    opacity: 1;
+                }
+            }
+        }
+
+        div.dte-blade
+        {
+            background: $blade-background;
+            color: $blade-foreground;
+            min-width: 300px;
+
+            .caption
+            {
+                text-transform: uppercase;
+                padding: 14px;
+                font-size: 10px;
+                font-weight: lighter;
+                cursor: default;
+                user-select: none;
+            }
+        }
+
+    }
+
+
+}
+
+
+
+.dte-portlet.dte-portlet-left
+{
+    position: absolute;
+    background: $portlet-background;
+}

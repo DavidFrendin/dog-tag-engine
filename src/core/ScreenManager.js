@@ -6,11 +6,38 @@
 
 class ScreenManager
 {
+
+    offsetList = {};
+
     constructor(engine)
     {
         this._engine = engine;
 
         this.offset = {left: 0, right: 0, top: 0, bottom: 0};
+    }
+
+    upsertOffset(id, value)
+    {
+        console.log('upsertOffset for ' + id);
+        console.log(value);
+        this.offsetList[id] = value;
+        this.recalculateOffsets();
+    }
+
+    recalculateOffsets()
+    {
+        this.offset = {left: 0, right: 0, top: 0, bottom: 0};
+        console.log(this.offsetList.length);
+        for (var key in this.offsetList) {
+            this.offset.left += this.offsetList[key].left;
+            this.offset.right += this.offsetList[key].right;
+            this.offset.top += this.offsetList[key].top;
+            this.offset.bottom += this.offsetList[key].bottom;
+        }
+        console.log('new offsets');
+        console.log(this.offset);
+        this.updateCanvas();
+
     }
 
 	updateCanvas()

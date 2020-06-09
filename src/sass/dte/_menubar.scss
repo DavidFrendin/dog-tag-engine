@@ -6,7 +6,8 @@ $menubar-expanded-focus-background: #74b9ff;
 
 div#dte-menubar
 {
-    position: fixed;
+    position: absolute;
+    z-index: 10000;
     left: 0;
     right: 0;
     top: 0;
@@ -60,6 +61,7 @@ div#dte-menubar
         left: 0;
         background: $menubar-expanded-background;
         box-shadow: 3px 3px 2px rgba(0,0,0,0.24);
+        z-index: 1000;
 
         li
         {
@@ -79,10 +81,3 @@ div#dte-menubar
         }
     }
 }
-
-@keyframes example {
-    0%   {background-color: red;}
-    25%  {background-color: yellow;}
-    50%  {background-color: blue;}
-    100% {background-color: green;}
-  }

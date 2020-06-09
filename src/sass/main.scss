@@ -1,8 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Open+Sans:wght@300;400;600;700;800&display=swap');
+@import 'fx/ripple';
 @import 'dte/menubar';
+@import 'dte/portlet';
 
-*
+html
 {
 	box-sizing: border-box;
-	font-size: 12px;
+}
+
+*,*::before,*::after
+{
+	box-sizing: inherit;
 }
