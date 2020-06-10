@@ -12,6 +12,104 @@ class GUI
     {
         this._engine = engine;
 
+        this.addAnimEvents(document.body);
+        document.addEventListener ('DOMNodeInserted', function(event)
+        {
+            this.addAnimEvents(event.target);
+        }.bind(this), false);
+
+    }
+
+    addAnimEvents(el)
+    {
+        if (el.hasAttribute('anim'))
+        {
+            var anim = el.getAttribute('anim');
+            if (anim == 'ripple')
+            {
+                console.log('setting ripple');
+                el.addEventListener('click', e => {
+
+                    e = e.touches ? e.touches[0] : e;
+                    const r = el.getBoundingClientRect(), d = Math.sqrt(Math.pow(r.width,2)+Math.pow(r.height,2)) * 2;
+                    el.style.cssText = `--s: 0; --o: 1;`;  el.offsetTop; 
+                    el.style.cssText = `--t: 1; --o: 0; --d: ${d}; --x:${e.clientX - r.left}; --y:${e.clientY - r.top};`
+                });            
+            }
+        }
+
+        console.log(el);
+        if (el.children)
+        {
+            for (var i = 0; i < el.children.length; i++) {
+                this.addAnimEvents(el.children[i]);
+            }
+        }
+    }
+
+    alert(message)
+    {
+        return this.createDialog({content: message, clickToDismiss: true});
+    }
+    
+    createDialog(params)
+    {
+        return new Promise((resolve, reject) => {
+            var dialog = document.createElement('dialog');
+            dialog.className = 'dte-dialog material-elevation-24';
+
+            if (params.caption)
+            {
+                var caption = document.createElement('header');
+                caption.appendChild(document.createTextNode(params.caption));
+                dialog.appendChild(caption);
+            }
+
+            var content = document.createElement('main');
+            content.appendChild(document.createTextNode(params.content));
+            dialog.appendChild(content);
+
+            var actions = params.actions;
+            if (!actions)
+            {
+                actions = ['Ok'];
+            }
+            var footer = document.createElement('footer');
+            for (var i = 0; i < actions.length; i++)
+            {
+                var action = document.createElement('button');
+                action.appendChild(document.createTextNode(actions[i]));
+                action.className = 'dte-button dte-action';
+                action.setAttribute('anim', 'ripple');
+                footer.appendChild(action);
+                action.addEventListener('click', e => {
+                    dialog.close();
+                    resolve(e.target.innerText);
+                });
+            }
+            dialog.appendChild(footer);
+
+            if (params.clickToDismiss)
+            {
+                dialog.addEventListener('click', e => {
+                    var rect = dialog.getBoundingClientRect();
+                    if (e.clientX < rect.x || e.clientX > (rect.x + rect.width) || e.clientY < rect.y || e.clientY > (rect.y + rect.height))
+                    {
+                        dialog.close();
+                        resolve(null);
+                    }
+                    console.log();
+                    console.log(e);
+                });
+            }
+
+            dialog.addEventListener('close', e => {
+                dialog.parentElement.removeChild(dialog);
+            });
+
+            document.body.appendChild(dialog);
+            dialog.showModal();
+        });
     }
 
     createMenubar(menu)
@@ -130,14 +228,6 @@ class Portlet
 
         container.icon = portletItem;
         container.icon.addEventListener('click', e => {
-
-            var el = container.icon;
-            e = e.touches ? e.touches[0] : e;
-            const r = el.getBoundingClientRect(), d = Math.sqrt(Math.pow(r.width,2)+Math.pow(r.height,2)) * 2;
-            el.style.cssText = `--s: 0; --o: 1;`;  el.offsetTop; 
-            el.style.cssText = `--t: 1; --o: 0; --d: ${d}; --x:${e.clientX - r.left}; --y:${e.clientY - r.top};`
-    
-            
             for (var i = 0; i < event.path.length; i++)
             {
                 var dteTarget = event.path[i].getAttribute('dte-target');

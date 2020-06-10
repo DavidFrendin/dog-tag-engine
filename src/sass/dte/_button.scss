@@ -1,0 +1,35 @@
+$button-color: rgba(0,0,0,.87);
+$action-color: #3282B8;
+
+.dte-button
+{
+    --ripple-background: #333333;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+    background: transparent;
+    border: none;
+    padding: 0 16px;
+    line-height: 36px;
+    color: $button-color;
+    transition: background .2s cubic-bezier(0.35, 0, 0.25, 1);
+    outline: 0;
+    cursor: pointer;
+
+    &:hover
+    {
+        background: rgba(0,0,0,.04);
+    }
+
+    &.dte-action
+    {
+        --ripple-background: #3282B8;
+        color: $action-color;
+
+        &:hover
+        {
+            background: rgba($action-color, 0.04);
+        }
+    }
+
+}

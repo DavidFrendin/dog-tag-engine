@@ -12,17 +12,46 @@
 	</head>
 	<body>
 
-		<script type="module">
+		<dialog class="dte-dialog material-elevation-24" id="diatest1">
+			<header>
+				Lucas ipsum dolor sit amet
+			</header>
+			<main>
+				Qui-gon antilles jinn wedge lobot fisto kashyyyk darth solo organa.
+			</main>
+			<footer>
+				<button class="dte-button dte-action" anim="ripple">Ok</button>
+			</footer>
+		</dialog>
+
+		<dialog class="dte-dialog material-elevation-24" id="diatest2">
+			<header>
+				Lucas ipsum dolor sit amet
+			</header>
+			<main>
+				<p>Qui-gon antilles jinn wedge lobot fisto kashyyyk darth solo organa. Alderaan moff biggs moff. Darth hutt kashyyyk organa. Mon skywalker chewbacca dooku palpatine jango tatooine darth wookiee. Ackbar bespin calrissian amidala. Wampa calrissian qui-gon jabba maul. Chewbacca ventress darth gamorrean padmé lando mandalore wookiee. Coruscant hutt solo darth vader moff. Hutt antilles tatooine jango gonk yavin utapau yoda moff. Darth luke jinn fett ewok mon skywalker. Kit mustafar mace ventress.</p>
+				<p>Maul maul padmé skywalker boba mandalorians ewok mon dagobah. Darth moff ahsoka ewok. Grievous biggs mon wedge darth wampa skywalker kashyyyk. Ewok binks twi'lek fett solo skywalker sith. Organa darth calrissian antilles. Skywalker c-3po fett lando darth k-3po bothan amidala wookiee. Calrissian organa fett fett skywalker alderaan. K-3po alderaan baba owen ponda ahsoka dantooine kamino. Kenobi utapau moff hutt jango ewok darth. Anakin jar qui-gonn moff darth dantooine skywalker solo. Darth fett mace solo wedge obi-wan mon hutt.</p>
+				<p>Wedge padmé windu amidala organa leia vader moff skywalker. Bothan ackbar boba skywalker dooku. Darth droid wedge r2-d2 qui-gonn darth mon antilles chewbacca. Aayla leia darth kamino solo yoda organa. Yoda coruscant antilles hoth mandalorians darth. Tatooine droid antilles luke darth kenobi binks mace hutt. Windu sidious luke qui-gonn luke lando solo. Hoth mustafar utapau ackbar kenobi darth. Palpatine fett maul gonk boba kessel darth chewbacca antilles. Grievous mandalore dantooine luke darth skywalker calamari solo hutt.</p>
+				<p>Gonk antilles maul r2-d2 yoda dantooine solo grievous mace. Grievous maul moff jabba dooku ben skywalker bothan. Antilles padmé kessel hutt secura solo organa skywalker leia. Tusken raider lars r2-d2 kamino darth. Ventress mon qui-gon darth ackbar. Yoda sidious moff skywalker c-3p0 obi-wan yoda darth. Darth droid antilles calrissian grievous wedge baba. Baba maul lars cade cade anakin. Kashyyyk kessel darth padmé jade hutt leia binks. Jabba c-3po owen hutt skywalker boba palpatine hutt windu. Sebulba padmé amidala antilles dooku kashyyyk.</p>
+				<p>Kessel maul jade qui-gon moff. Solo bespin mon darth padmé skywalker. Luuke solo tatooine organa. Moff antilles owen jar moff sidious biggs jango endor. Skywalker gamorrean hoth wicket luke secura. Skywalker thrawn padmé organa wampa calrissian darth aayla sebulba. Ponda chewbacca fett ackbar dantooine moff. Utapau organa hutt leia solo moff jabba yoda. Darth mara ventress moff dantooine moff c-3p0 moff. Grievous cade calrissian dantooine anakin. Skywalker darth organa mace skywalker droid vader solo.</p>
+			</main>
+			<footer>
+				<button class="dte-button dte-action" anim="ripple">Ok</button>
+			</footer>
+		</dialog>
+
+<script type="module">
 
 			import * as DTE from '../../src/DTE.js';
 			var engine = new DTE.Engine();
+			window.engine = engine;
 			engine.settings.web.base_href = '/src/'
 			
 			engine.rendering.init();
 			engine.screenManager.updateCanvas();
 			engine.screenManager.monitorResizeEvents();
 
-			var menu = [{name: 'File', children: [{name: 'New', click: function(){ alert('new');}}, {name: 'Open'}, {name: 'Save'}]}, {name: 'Renderer'}]
+			var menu = [{name: 'File', children: [{name: 'New', click: function(){ engine.gui.createDialog({caption: 'Create new file', content: 'Are you sure you want to create a new file? Any unsaved changes will be lost.', actions: ['Cancel', 'Create new']});}}, {name: 'Open', click: function(){ engine.gui.alert('Clicked on open');}}, {name: 'Save'}]}, {name: 'Renderer'}]
 			engine.gui.createMenubar(menu);
 			var portlet = engine.gui.createPortlet('left', 'icons');
 			portlet.addContainer({name: 'Terrain', icon: 'assets/icons/stationery_32.png'});

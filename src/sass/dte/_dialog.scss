@@ -1,0 +1,68 @@
+$header-color: rgba(0,0,0,.87);
+$main-color: rgba(0,0,0,.60);
+$dialog-background: #ffffff;
+
+dialog.dte-dialog
+{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 20001;
+    border: none;
+    font-family: 'open sans';
+    width: 100%;
+    max-width: 600px;
+    padding: 2em;
+    background: $dialog-background;
+
+    header
+    {
+        font-size: 20px;
+        color: $header-color;
+        font-weight: bold;
+        margin: 0 0 20px;
+        user-select: none;
+        cursor: default;
+    }
+
+    main
+    {
+        margin: 0 0 20px;
+        color: $main-color;
+        font-weight: 600;
+        font-size: 14px;
+        max-height: 20vh;
+        overflow-y: scroll;
+        user-select: none;
+        cursor: default;
+
+        &::-webkit-scrollbar
+        {
+            width: 1em;
+        }
+
+        &::-webkit-scrollbar-track
+        {
+            background: rgba(0,0,0,.04);
+        }
+
+        &::-webkit-scrollbar-thumb
+        {
+            background: rgba(0,0,0,.6);
+        }
+    }
+
+    footer
+    {
+        text-align: right;
+        user-select: none;
+        cursor: default;
+    }
+
+    &::backdrop
+    {
+        background: rgba(0,0,0,.5);
+    }
+}
