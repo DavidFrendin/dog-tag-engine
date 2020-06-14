@@ -2,5 +2,36 @@ body, html
 {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+}
+
+.ui-example
+{
+    background: #eeeeee;
+    font-size: 14px;
+    font-family: 'open sans';
+    overflow: auto;
+    padding-bottom: 3em;
+}
+
+.ui-example header
+{
+    font-size: 28px;
+    margin-top: 2em;
+    margin-bottom: .5em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.ui-example .container
+{
+    max-width: 800px;
+    width: 100%;
+    margin: auto;
+}
+
+.ui-example .panel
+{
+    background: #ffffff;
+    padding: 2em;
+    margin-bottom: 2em;
 }

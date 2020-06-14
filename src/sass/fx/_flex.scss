@@ -1,0 +1,15 @@
+flex
+{
+    display: flex;
+    flex-direction: column;
+
+    &[columns]
+    {
+        flex-direction: row;
+    }
+}
+
+[flex]
+{
+    flex: 1;
+}

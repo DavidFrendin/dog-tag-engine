@@ -12,6 +12,30 @@ class GUI
     {
         this._engine = engine;
 
+        let customElementRegistry = window.customElements;
+        customElementRegistry.define('dte-button',
+        class extends HTMLElement {
+          constructor() {
+            super();
+            const template = document.createElement('div').appendChild(document.createTextNode('hello world'));
+            const shadowRoot = this.attachShadow({mode: 'open'});
+            shadowRoot.innerHTML = '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />';
+            shadowRoot.innerHTML += this.innerHTML;
+            this.addEventListener('click', e => {
+
+                var el = this;
+                if (this.hasAttribute('disabled'))
+                    return;
+                e = e.touches ? e.touches[0] : e;
+                const r = el.getBoundingClientRect(), d = Math.sqrt(Math.pow(r.width,2)+Math.pow(r.height,2)) * 2;
+                el.style.cssText = `--s: 0; --o: 1;`;  el.offsetTop; 
+                el.style.cssText = `--t: 1; --o: 0; --d: ${d}; --x:${e.clientX - r.left}; --y:${e.clientY - r.top};`
+            });            
+              //.appendChild(template);
+          }
+        }
+      );
+
         this.addAnimEvents(document.body);
         document.addEventListener ('DOMNodeInserted', function(event)
         {
@@ -22,6 +46,10 @@ class GUI
 
     addAnimEvents(el)
     {
+        if (!el.hasAttribute)
+        {
+            return false;
+        }
         if (el.hasAttribute('anim'))
         {
             var anim = el.getAttribute('anim');
@@ -77,10 +105,10 @@ class GUI
             var footer = document.createElement('footer');
             for (var i = 0; i < actions.length; i++)
             {
-                var action = document.createElement('button');
+                var action = document.createElement('dte-button');
                 action.appendChild(document.createTextNode(actions[i]));
-                action.className = 'dte-button dte-action';
-                action.setAttribute('anim', 'ripple');
+                action.setAttribute('action', '');
+                action.shadowRoot.innerHTML = action.innerHTML;
                 footer.appendChild(action);
                 action.addEventListener('click', e => {
                     dialog.close();
@@ -133,6 +161,7 @@ class GUI
             var label = document.createElement('label')
             label.appendChild(document.createTextNode(name));
             li.appendChild(label);
+            //li.setAttribute('anim', 'ripple');
 
             var liTabindex = document.createAttribute('tabindex');
             liTabindex.value = '0';

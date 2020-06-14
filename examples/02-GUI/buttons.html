@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Dog Tag Engine - GUI</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="/assets/css/main.css">
+		<link type="text/css" rel="stylesheet" href="../css/examples.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
+	</head>
+	<body class="ui-example">
+
+		<header>
+			Buttons
+		</header>
+
+		<div class="container">
+			<p>
+				Regular buttons
+			</p>
+
+			<div class="material-elevation-1 container panel">
+				<dte-button>Regular</dte-button>
+				<dte-button disabled>Disabled</dte-button>
+				<dte-button action>Action</dte-button>
+			</div>
+		</div>
+		
+		<div class="container">
+			<p>
+				Distinct buttons
+			</p>
+
+			<div class="material-elevation-1 panel">
+				<dte-button distinct>Regular</dte-button>
+				<dte-button distinct disabled>Disabled</dte-button>
+				<dte-button distinct action>Action</dte-button>
+			</div>
+		</div>
+
+		<div class="container">
+			<p>
+				Icon buttons
+			</p>
+
+			<div class="material-elevation-1 panel">
+				<dte-button><i class="far fa-save"></i> Save</dte-button>
+				<dte-button disabled><i class="far fa-save"></i> Save</dte-button>
+				<dte-button action><i class="far fa-save"></i> Save</dte-button>
+			</div>
+		</div>
+
+		<div class="container">
+			<p>
+				Distinct icon buttons
+			</p>
+
+			<div class="material-elevation-1 panel">
+				<dte-button distinct><i class="far fa-save"></i> Save</dte-button>
+				<dte-button distinct disabled><i class="far fa-save"></i> Save</dte-button>
+				<dte-button distinct action><i class="far fa-save"></i> Save</dte-button>
+			</div>
+		</div>
+
+		<header>
+			Notification & engagement
+		</header>
+
+		<div class="container">
+			<p>
+				Alert
+			</p>
+
+			<div class="material-elevation-1 container panel">
+				<dte-button onclick="engine.gui.alert('I\m touched');">Touch me</dte-button>
+			</div>
+		</div>
+
+		<div class="container">
+			<p>
+				Modal
+			</p>
+
+			<div class="material-elevation-1 container panel">
+				<dte-button onclick="engine.gui.createDialog({caption: 'Halt!', content: 'What is your quest?', actions: ['To seek the holy grail', 'I dont know']}).then(function(answer) {document.getElementById('modal-response').innerText = 'Modal answer: ' + answer});">Open dialog</dte-button>
+				<div id="modal-response"></div>
+			</div>
+		</div>
+
+
+
+<script type="module">
+
+			import * as DTE from '../../src/DTE.js';
+			var engine = new DTE.Engine();
+			window.engine = engine;
+			engine.settings.web.base_href = '/src/'
+
+		</script>
+		
+	</body>
+</html>
